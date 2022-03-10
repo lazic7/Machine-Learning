@@ -23,7 +23,7 @@ for adresa in adrese: #za svaku adresu u listi adresa
             substring2 = adresa[pBr: ] #umjesto [pBr: ] moze ici i [pBr-1: ] kako bi se zahvatio i znak "@" ako to zelimo
             hostnames.append(substring2) #dodajem taj substring u listu hostname-ova
 
-    pBr = 0 #brojac moram vratiti na 0 kako bi za sljedecu adresu iz liste adresa moga pravilno prebrojati koliko znakova ima do "@"     
+    pBr = 0 #brojac moram vratiti na 0 kako bi za sljedecu adresu iz liste adresa mogao pravilno prebrojati koliko znakova ima do "@"     
 
 for hostname in hostnames: #spremam hostnameove u dictionary
     if hostname not in dictionary:
