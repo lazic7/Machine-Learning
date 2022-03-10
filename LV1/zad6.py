@@ -14,7 +14,7 @@ except:
 for line in fhand:
     if substring in line:
         words = line.split()
-        adrese.append(words[1]) #dodajem "word" sa ideksa 1 u listu "words" zato sto ce email adresa bas biti na indexu 1 kad skripta pronadje liniju sa "From "
+        adrese.append(words[1]) #dodajem "word" sa ideksa 1 u listu "adrese" zato sto ce email adresa bas biti na indexu 1 kad skripta pronadje liniju sa "From "
 
 for adresa in adrese: #za svaku adresu u listi adresa
     for char in adresa: #prodji kroz svaki znak u pojedinoj adresi
