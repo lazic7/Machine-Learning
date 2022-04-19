@@ -1,0 +1,5 @@
+{
+    "python.defaultInterpreterPath": "c:/Python/Python310/python.exe",
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}
