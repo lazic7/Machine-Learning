@@ -18,3 +18,15 @@ print("AVG potrosnja 6cyl: ",mtcars[(mtcars.cyl == 6)].mpg.sum() / mtcars[(mtcar
 
 print("")
 print("AVG potrosnja 4cyl masa izmedju 2000 i 2200lbs: ",mtcars[(mtcars.cyl == 4) & (mtcars.wt >= 2.0) & (mtcars.wt <= 2.2)].mpg.sum()/mtcars[(mtcars.cyl == 4) & (mtcars.wt >= 2.0) & (mtcars.wt <= 2.2)].mpg.count())
+
+print("")
+print("Broj automatic vozila: ", mtcars[(mtcars.am == 1)].car.count())
+
+print("")
+print("Broj manual vozila: ", mtcars[(mtcars.am == 0)].car.count())
+
+print("")
+print("Broj automatic vozila hp>100: ", mtcars[(mtcars.am == 1) & (mtcars.hp > 100)].car.count())
+
+mtcars['heavy'] = mtcars.wt * 1000 * 0.454
+print(mtcars[['car','heavy']])
