@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt
 
 # url koji sadrzi xml datoteku s mjerenjima:
-url = 'http://iszz.azo.hr...'
+url ='http://iszz.azo.hr/iskzl/rs/podatak/export/xml?postaja=160&polutant=5&tipPodatka=4&vrijemeOd=01.01.2017&vrijemeDo=21.04.2022'
 
 airQualityHR = ur.urlopen(url).read()
 root = ET.fromstring(airQualityHR)
