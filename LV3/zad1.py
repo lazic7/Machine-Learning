@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-mtcars = pd.read_csv('mtcars.csv')
+mtcars = pd.read_csv('LV3/mtcars.csv')
 print(mtcars)
 
 print("")

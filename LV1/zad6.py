@@ -1,4 +1,4 @@
-fname = input('Unesite ime datoteke: ') #npr. c:/Users/user/Desktop/PSU_LV/LV1/mbox.txt
+fname = input('Unesite ime datoteke: ') #npr LV1/mbox.txt
 substring = "From "
 adrese = []
 hostnames = []

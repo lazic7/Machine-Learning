@@ -2,7 +2,7 @@ import numpy as np
 import skimage.io
 import matplotlib.pyplot as plt
 
-img = skimage.io.imread('LV2\\tiger.png', as_gray=True) #dtype uint8, dimenzije: 640x960
+img = skimage.io.imread('LV2/tiger.png', as_gray=True) #dtype uint8, dimenzije: 640x960
 plt.figure(1)
 plt.imshow(img, cmap='gray', vmin=0, vmax=255)
 

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-mtcars = pd.read_csv('C:\\Users\\lazic\\Documents\\FERIT\\PSU_LV\\LV3\\mtcars.csv')
+mtcars = pd.read_csv('LV3/mtcars.csv')
 print(mtcars)
 
 mtcars.groupby('cyl')['mpg'].mean().plot.bar()
