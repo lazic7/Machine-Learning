@@ -4,7 +4,7 @@ import xml.etree.ElementTree as ET
 import matplotlib.pyplot as plt
 
 # url koji sadrzi xml datoteku s mjerenjima:
-url ='http://iszz.azo.hr/iskzl/rs/podatak/export/xml?postaja=160&polutant=5&tipPodatka=4&vrijemeOd=01.01.2017&vrijemeDo=21.04.2022'
+url = 'http://iszz.azo.hr/iskzl/rs/podatak/export/xml?postaja=160&polutant=5&tipPodatka=0&vrijemeOd=01.01.2017&vrijemeDo=31.12.2017'
 
 airQualityHR = ur.urlopen(url).read()
 root = ET.fromstring(airQualityHR)
@@ -15,7 +15,7 @@ i = 0
 while True:
     
     try:
-        obj = root.getchildren()[i].getchildren()
+        obj = root[i]
     except:
         break
     
@@ -33,3 +33,6 @@ plt.show()
 # add date month and day designator
 df['month'] = df['vrijeme'].dt.month
 df['dayOfweek'] = df['vrijeme'].dt.dayofweek
+
+
+print(df.sort_values(['mjerenje']).tail(3))
