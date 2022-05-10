@@ -51,3 +51,9 @@ plt.ylabel("x2")
 plt.scatter(X[:,0], X[:,1], c= model.labels_)
 plt.scatter(model.cluster_centers_[:,0], model.cluster_centers_[:,1], c = 'r', marker='x')
 plt.show()
+
+model = linkage(X,'average')
+
+plt.figure(3)
+dg = dendrogram(model)
+plt.show()
