@@ -1,0 +1,11 @@
+Podatke koje koristimo u ovo projektu predikcije dijabetesa, skinuli smo s Keggle datasets stranice u obliku csv file-a
+
+Pomocu funkcija u pythonu odredili smo tipove podataka koji se nalaze u datasetu, vidjeli njihove rezultate razlicitih
+matematickih formula i provjerili postoje li nepotpuni podatci u datasetu poput NULL vrijednosti
+
+Da bi nastavili sa izradom modela za predikciju, morali smo provjeriti korelaciju i ispravnost podataka.
+Takodjer morali smo se upoznati s odredjenim parametrima koji ce utjecati na rezultat naseg modela, odnosno na to
+ima li osoba dijabetes ili ne.
+
+Iz dijagrama korelacije mozemo procitati kako kolicina glukoze u krvi, broj godina, BMI i broj puta kojih je zena
+bila trudnica jako korelira s rezultatom da li osoba ima dijabetes ili ne.
