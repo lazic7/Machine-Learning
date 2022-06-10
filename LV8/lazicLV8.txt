@@ -1,0 +1,82 @@
+from cProfile import label
+import os
+import shutil
+
+testCSV = "LV8/Test.csv"
+testDir = "LV8/Test_dir"
+
+#kreiraj direktorij gdje ce se spremiti testne slike
+os.makedirs(testDir, exist_ok=True)
+
+#otvori csv sa labelama i putanjama
+rows = open(testCSV).read().strip().split("\n")[1:]
+
+#prolazak kroz sve unose u csvu; kopiraj sliku u poddirektorij
+for r in rows:
+    
+    (label,imagePath) = r.strip().split(",")[-2:]
+    os.makedirs(os.path.join(testDir,label), exist_ok=True)
+    shutil.copy(os.path.join("LV8", imagePath), os.path.join(testDir,label))
+
+///////////////////////////////////////////////////////////////////////////
+
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.preprocessing import image_dataset_from_directory
+
+from matplotlib import pyplot as plt
+import numpy as np
+
+#ucitavanje podataka s diska
+
+from matplotlib import image
+
+
+train_ds = image_dataset_from_directory(
+    directory='LV8/Train',
+    labels='inferred',
+    label_mode='categorical',
+    batch_size=32,
+    image_size=(48, 48))
+
+test_ds = image_dataset_from_directory(
+    directory='LV8/Test_dir',
+    labels='inferred',
+    label_mode='categorical',
+    batch_size=1,
+    image_size=(48, 48))
+
+#izgradnja modela 
+inputs = keras.Input(shape=(48,48,3))
+x = layers.experimental.preprocessing.Rescaling(1./255)(inputs)
+x = layers.Conv2D(32, kernel_size=(3,3), padding='same', activation="relu")(x)
+x = layers.Conv2D(32, kernel_size=(3,3), padding='valid', activation="relu")(x)
+x = layers.MaxPool2D(pool_size=(2,2), strides=(2,2))(x)
+x = layers.Dropout(rate = 0.2)(x)
+x = layers.Conv2D(64, kernel_size=(3,3), padding='same', activation="relu")(x)
+x = layers.Conv2D(64, kernel_size=(3,3), padding='valid', activation="relu")(x)
+x = layers.MaxPool2D(pool_size=(2,2), strides=(2,2))(x)
+x = layers.Dropout(rate = 0.2)(x)
+x = layers.Conv2D(128, kernel_size=(3,3), padding='same', activation="relu")(x)
+x = layers.Conv2D(128, kernel_size=(3,3), padding='valid', activation="relu")(x)
+x = layers.MaxPool2D(pool_size=(2,2), strides=(2,2))(x)
+x = layers.Dropout(rate = 0.2)(x)
+x = layers.Flatten()(x)
+x = layers.Dense(512, activation='relu')(x)
+x = layers.Dropout(rate = 0.5)(x)
+outputs = layers.Dense(43, activation='softmax')(x)
+
+model = keras.Model(inputs=inputs, outputs=outputs, name="gtsrb_model")
+
+model.summary()
+
+#proces treniranja
+history = model.compile(loss="categorical_crossentropy", optimizer="adam", metrics=["accuracy",])
+
+#provedi ucenje
+epochs = 2
+history = model.fit(train_ds, epochs=epochs)
+
+score = model.evaluate(test_ds)
+print("Test Loss: ", score[0])
+print("Test accuracy: ", score[1])
